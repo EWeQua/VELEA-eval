@@ -1,8 +1,0 @@
-name: velea-eval
-channels:
-  - conda-forge
-dependencies:
-  - python=3.11.9
-  - black=24.8.0
-  - glaes=1.1.6
-  - velea=0.1.0
