@@ -2,14 +2,14 @@ import timeit
 
 from glaes import ExclusionCalculator
 
-from src.shared_paths import regionPath, includes, excludes, output_directory
+from src.shared_paths import region_path, includes, excludes, output_directory
 
 pixel_resolutions = [1, 10, 100]
 number_of_repetitions = 10
 
 
 def run():
-    ec = ExclusionCalculator(regionPath, srs=3035, pixelRes=pixel_resolution, initialValue=False)
+    ec = ExclusionCalculator(region_path, srs=3035, pixelRes=pixel_resolution, initialValue=False)
     for include in includes:
         ec.excludeVectorType(**include)
     for exclude in excludes:

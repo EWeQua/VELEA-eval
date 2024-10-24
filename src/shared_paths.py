@@ -1,41 +1,72 @@
-input_directory = '../input/RMK'
-output_directory = '../output/'
+input_directory = "../input/RMK"
+output_directory = "../output/"
 
-regionPath = f"{input_directory}/base.shp"
-excludesPath = f"{input_directory}/exclude"
-includesPath = f"{input_directory}/include"
+region_path = f"{input_directory}/base.shp"
+excludes_path = f"{input_directory}/exclude"
+includes_path = f"{input_directory}/include"
+restricted_path = f"{input_directory}/restricted"
 
-base_area = {"source": regionPath}
+base_area = {"source": region_path}
 
 # includes = [f"{includesPath}/{file}" for file in os.listdir(includesPath) if file.endswith(".shp")]
 includes = [
-    {"source": f"{input_directory}/include/Benachteiligte Gebiete.shp", "mode": "include"},
-    {"source": f"{input_directory}/include/Deponie.shp", "mode": "include",
-     "where": "zustand = '2100' and funktion = '8100'"},
+    {"source": f"{includes_path}/Benachteiligte Gebiete.shp", "mode": "include"},
     {
-        "source": f"{input_directory}/include/Schienennetz.shp",
+        "source": f"{includes_path}/Deponie.shp",
+        "mode": "include",
+        "where": "zustand = '2100' and funktion = '8100'",
+    },
+    {
+        "source": f"{includes_path}/Schienennetz.shp",
         "buffer": 120,
         "mode": "include",
     },
-    {"source": f"{input_directory}/include/Tagebau.shp", "mode": "include",
-     "where": "zustand = '2100' and art = '3110'"},
+    {
+        "source": f"{includes_path}/Tagebau.shp",
+        "mode": "include",
+        "where": "zustand = '2100' and art = '3110'",
+    },
 ]
 
 excludes = [
-    {'source': f'{input_directory}/exclude/Alle Straßen.shp',
-     'buffer': 2.5},
-    {'source': f'{input_directory}/exclude/Schienennetz.shp',
-     'buffer': 20},
-    {'source': f'{input_directory}/exclude/Biosphaerengebiet Kernzone.shp', 'where': "ZONE = 'Kernzone'"},
-    {'source': f'{input_directory}/exclude/Flächenhafte Naturdenkmal.shp'},
-    {'source': f'{input_directory}/exclude/Gebäude.shp', 'buffer': 10, "where": "GFK not in ('31001_1313')"},
-    {'source': f'{input_directory}/exclude/Nationalparke.shp'},
-    {'source': f'{input_directory}/exclude/Naturschutzgebiete.shp'},
-    {'source': f'{input_directory}/exclude/Offenlandkartierung Biotope.shp'},
-    {'source': f'{input_directory}/exclude/Stehende Gewaesser.shp'},
-    {'source': f'{input_directory}/exclude/Straßen.shp',
-     'buffer': 22.5},
-    {'source': f'{input_directory}/exclude/Waldkartierung Biotope.shp'},
-    {'source': f'{input_directory}/exclude/Wasserschutzgebiete.shp', 'where': "ZONE = 'Zone I und II bzw. IIA'"},
-    {'source': f'{input_directory}/exclude/Überschwemmungsgebiete HQ100.shp'}
+    {"source": f"{excludes_path}/Alle Straßen.shp", "buffer": 2.5},
+    {"source": f"{excludes_path}/Schienennetz.shp", "buffer": 20},
+    {
+        "source": f"{excludes_path}/Biosphaerengebiet Kernzone.shp",
+        "where": "ZONE = 'Kernzone'",
+    },
+    {"source": f"{excludes_path}/Flächenhafte Naturdenkmal.shp"},
+    {
+        "source": f"{excludes_path}/Gebäude.shp",
+        "buffer": 10,
+        "where": "GFK not in ('31001_1313')",
+    },
+    {"source": f"{excludes_path}/Nationalparke.shp"},
+    {"source": f"{excludes_path}/Naturschutzgebiete.shp"},
+    {"source": f"{excludes_path}/Offenlandkartierung Biotope.shp"},
+    {"source": f"{excludes_path}/Stehende Gewaesser.shp"},
+    {"source": f"{excludes_path}/Straßen.shp", "buffer": 22.5},
+    {"source": f"{excludes_path}/Waldkartierung Biotope.shp"},
+    {
+        "source": f"{excludes_path}/Wasserschutzgebiete.shp",
+        "where": "ZONE = 'Zone I und II bzw. IIA'",
+    },
+    {"source": f"{excludes_path}/Überschwemmungsgebiete HQ100.shp"},
+]
+
+restricted = [
+    {"source": f"{restricted_path}/Biosphaerengebiet Kernzone.shp"},
+    {"source": f"{restricted_path}/Biotopverbund Kernflaeche feucht.shp"},
+    {"source": f"{restricted_path}/Biotopverbund Kernflaeche Mittel.shp"},
+    {"source": f"{restricted_path}/Biotopverbund Kernflaeche trocken.shp"},
+    {"source": f"{restricted_path}/Biotopverbund Kernraum feucht.shp"},
+    {"source": f"{restricted_path}/Biotopverbund Kernraum Mittel.shp"},
+    {"source": f"{restricted_path}/Biotopverbund Kernraum trocken.shp"},
+    {"source": f"{restricted_path}/Biotopverbund Suchraum feucht.shp"},
+    {"source": f"{restricted_path}/Biotopverbund Suchraum Mittel.shp"},
+    {"source": f"{restricted_path}/Biotopverbund Suchraum trocken.shp"},
+    {"source": f"{restricted_path}/Generalwildwegeplan.shp", "buffer": 1000},
+    {"source": f"{restricted_path}/Landschaftsschutzgebiete.shp"},
+    {"source": f"{restricted_path}/Natura 2000 FFH.shp"},
+    {"source": f"{restricted_path}/Natura 2000 Vogelschutzgebiete.shp"},
 ]
