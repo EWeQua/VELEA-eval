@@ -20,6 +20,7 @@ def run():
         base_area,
         includes,
         excludes,
+        restricted,
         sliver_threshold=100,
         crs="EPSG:25832",
     ).execute()
