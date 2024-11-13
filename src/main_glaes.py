@@ -31,10 +31,12 @@ for pixel_resolution in pixel_resolutions:
     print(f"Runtimes of GLAES with pixel resolution of {pixel_resolution}:")
     print(timer)
     print(
-       f"Minimum runtime of GLAES with pixel resolution of {pixel_resolution}: {min(timer):.2f}"
+        f"Minimum runtime of GLAES with pixel resolution of {pixel_resolution}: {min(timer):.2f}"
     )
 
     exclusion_calculator = run()
-    exclusion_calculator.save(f"{shared_paths.output_directory}/GLAES_{pixel_resolution}.tif")
+    exclusion_calculator.save(
+        f"{shared_paths.output_directory}/GLAES_{pixel_resolution}.tif"
+    )
 
     # exclusion_calculator.draw()
