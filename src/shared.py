@@ -51,6 +51,8 @@ excludes = [
         "where": "ZONE = 'Zone I und II bzw. IIA'",
     },
     {"source": f"{excludes_path}/Überschwemmungsgebiete HQ100.shp"},
+    {"source": f"{excludes_path}/Forstwirtschaft.shp"},
+    {"source": f"{excludes_path}/Wohnnutzung.shp"},
 ]
 
 restricted = [
