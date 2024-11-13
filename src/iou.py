@@ -1,9 +1,12 @@
 import geopandas as gpd
+import pandas as pd
 import rasterio
 from geopandas import GeoDataFrame
 from rasterio.features import shapes
 
-output_directory = "../output/"
+import shared_paths
+
+output_directory = shared_paths.output_directory
 
 filename = "GLAES"
 resolutions = [1, 10, 100]
@@ -29,7 +32,11 @@ def intersection_over_union(df1: GeoDataFrame, df2: GeoDataFrame) -> float:
     return intersection.area.sum() / union.area.sum()
 
 
-velea_gdf = gpd.read_file(f"{output_directory}/VELEA-eligible.gpkg")
+velea_eligible_gdf = gpd.read_file(f"{output_directory}/VELEA-eligible.gpkg")
+velea_restricted_gdf = gpd.read_file(f"{output_directory}/VELEA-restricted.gpkg")
+velea_gdf = gpd.GeoDataFrame(
+    pd.concat([velea_eligible_gdf, velea_restricted_gdf], ignore_index=True)
+)
 for resolution in resolutions:
     path_to_file = f"{output_directory}/{filename}_{resolution}"
     print(f"Vectorizing raster for resolution {resolution}")
@@ -37,4 +44,4 @@ for resolution in resolutions:
     # glaes_vector_gdf.to_file(f"{path_to_file}.gpkg")
     print(f"Calculating IoU for resolution {resolution}")
     iou = intersection_over_union(glaes_vector_gdf, velea_gdf)
-    print(f"IoU for resolution {resolution}: {iou:.2f}")
+    print(f"IoU for resolution {resolution}: {iou:.4f}")

@@ -2,25 +2,19 @@ import timeit
 
 from velea import EligibilityAnalysis
 
-from src.shared_paths import (
-    region_path,
-    includes,
-    excludes,
-    restricted,
-    output_directory,
-)
+import shared_paths
 
 number_of_repetitions = 10
 
-base_area = {"source": region_path}
+base_area = {"source": shared_paths.region_path}
 
 
 def run():
     return EligibilityAnalysis(
         base_area,
-        includes,
-        excludes,
-        restricted,
+        shared_paths.includes,
+        shared_paths.excludes,
+        shared_paths.restricted,
         sliver_threshold=100,
         crs="EPSG:25832",
     ).execute()
@@ -33,5 +27,5 @@ print(timer)
 print(f"Minimum runtime of VELEA: {min(timer):.2f}")
 
 eligible_areas, restricted_areas = run()
-eligible_areas.to_file(f"{output_directory}/VELEA-eligible.gpkg")
-restricted_areas.to_file(f"{output_directory}/VELEA-restricted.gpkg")
+eligible_areas.to_file(f"{shared_paths.output_directory}/VELEA-eligible.gpkg")
+restricted_areas.to_file(f"{shared_paths.output_directory}/VELEA-restricted.gpkg")
