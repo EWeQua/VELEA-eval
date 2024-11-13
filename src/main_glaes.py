@@ -2,28 +2,27 @@ import timeit
 
 from glaes import ExclusionCalculator
 
-import shared_paths
+import shared
 
-pixel_resolutions = [0.5, 0.1, 1, 10, 100]
 number_of_repetitions = 10
 
 
 def run():
     ec = ExclusionCalculator(
-        shared_paths.region_path,
+        shared.region_path,
         srs=25832,
         pixelRes=pixel_resolution,
         initialValue=False,
     )
-    for include in shared_paths.includes:
+    for include in shared.includes:
         ec.excludeVectorType(**include)
-    for exclude in shared_paths.excludes:
+    for exclude in shared.excludes:
         ec.excludeVectorType(**exclude)
     # ec.pruneIsolatedAreas(minSize=100)
     return ec
 
 
-for pixel_resolution in pixel_resolutions:
+for pixel_resolution in shared.glaes_pixel_resolutions:
     print(
         f"Running GLAES {number_of_repetitions} times with a pixel resolution of {pixel_resolution}"
     )
@@ -36,7 +35,7 @@ for pixel_resolution in pixel_resolutions:
 
     exclusion_calculator = run()
     exclusion_calculator.save(
-        f"{shared_paths.output_directory}/GLAES_{pixel_resolution}.tif"
+        f"{shared.output_directory}/{shared.glaes_filename}_{pixel_resolution}.tif"
     )
 
     # exclusion_calculator.draw()

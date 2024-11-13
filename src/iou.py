@@ -4,12 +4,9 @@ import rasterio
 from geopandas import GeoDataFrame
 from rasterio.features import shapes
 
-import shared_paths
+import shared
 
-output_directory = shared_paths.output_directory
-
-filename = "GLAES"
-resolutions = [1, 10, 100]
+output_directory = shared.output_directory
 
 
 def vectorize(path: str) -> GeoDataFrame:
@@ -37,8 +34,8 @@ velea_restricted_gdf = gpd.read_file(f"{output_directory}/VELEA-restricted.gpkg"
 velea_gdf = gpd.GeoDataFrame(
     pd.concat([velea_eligible_gdf, velea_restricted_gdf], ignore_index=True)
 )
-for resolution in resolutions:
-    path_to_file = f"{output_directory}/{filename}_{resolution}"
+for resolution in shared.glaes_pixel_resolutions:
+    path_to_file = f"{output_directory}/{shared.glaes_filename}_{resolution}"
     print(f"Vectorizing raster for resolution {resolution}")
     glaes_vector_gdf = vectorize(f"{path_to_file}.tif")
     # glaes_vector_gdf.to_file(f"{path_to_file}.gpkg")

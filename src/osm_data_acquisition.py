@@ -1,9 +1,9 @@
 import geopandas as gpd
 import osmnx
 
-import shared_paths
+import shared
 
-base_area = gpd.read_file(f"{shared_paths.input_directory}/base.shp").to_crs(epsg=4326)
+base_area = gpd.read_file(f"{shared.input_directory}/base.shp").to_crs(epsg=4326)
 
 shared_parameters = {
     "polygon": base_area.iloc[0]["geometry"],
@@ -13,19 +13,19 @@ shared_parameters = {
 
 filename_params_tuples = [
     (
-        f"{shared_paths.input_directory}/Autobahnen.shp",
+        f"{shared.input_directory}/Autobahnen.shp",
         {"custom_filter": "['highway'~'motorway|trunk']"} | shared_parameters,
     ),
     (
-        f"{shared_paths.input_directory}/Straßen.shp",
+        f"{shared.input_directory}/Straßen.shp",
         {"network_type": "drive"} | shared_parameters,
     ),
     (
-        f"{shared_paths.input_directory}/Alle Straßen.shp",
+        f"{shared.input_directory}/Alle Straßen.shp",
         {"network_type": "all_public"} | shared_parameters,
     ),
     (
-        f"{shared_paths.input_directory}/Schienennetz.shp",
+        f"{shared.input_directory}/Schienennetz.shp",
         {"custom_filter": "['railway'~'rail|disused|tram']"} | shared_parameters,
     ),
 ]
