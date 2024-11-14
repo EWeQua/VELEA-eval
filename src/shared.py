@@ -53,6 +53,16 @@ excludes = [
     {"source": f"{excludes_path}/Überschwemmungsgebiete HQ100.shp"},
     {"source": f"{excludes_path}/Forstwirtschaft.shp"},
     {"source": f"{excludes_path}/Wohnnutzung.shp"},
+    {"source": f"{excludes_path}/Straßen und Wege.shp.shp"},
+    {"source": f"{excludes_path}/Bestattung.shp.shp"},
+    {"source": f"{excludes_path}/Sportanlage.shp.shp"},
+    {"source": f"{excludes_path}/Freizeitanlage.shp.shp"},
+    {"source": f"{excludes_path}/Kultur.shp.shp"},
+    {"source": f"{excludes_path}/Öffentlich.shp.shp"},
+    {"source": f"{excludes_path}/Freiluft.shp.shp"},
+    {"source": f"{excludes_path}/Gewerbe.shp.shp"},
+    {"source": f"{excludes_path}/Industrie.shp.shp"},
+    {"source": f"{excludes_path}/Bahnverkehr.shp.shp"},
 ]
 
 restricted = [
