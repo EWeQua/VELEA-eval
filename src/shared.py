@@ -17,7 +17,7 @@ includes = [
     },
     {
         "source": f"{includes_path}/Schienennetz.shp",
-        "buffer": 120,
+        "buffer": 110,
         "mode": "include",
     },
     {
@@ -29,7 +29,7 @@ includes = [
 
 excludes = [
     {"source": f"{excludes_path}/Alle Straßen.shp", "buffer": 2.5},
-    {"source": f"{excludes_path}/Schienennetz.shp", "buffer": 20},
+    {"source": f"{excludes_path}/Schienennetz.shp", "buffer": 22.5},
     {
         "source": f"{excludes_path}/Biosphaerengebiet Kernzone.shp",
         "where": "ZONE = 'Kernzone'",
