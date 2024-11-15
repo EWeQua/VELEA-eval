@@ -26,7 +26,7 @@ filename_params_tuples = [
     ),
     (
         f"{shared.input_directory}/Schienennetz.shp",
-        {"custom_filter": "['railway'~'rail|disused|tram']"} | shared_parameters,
+        {"custom_filter": "['railway'~'rail|tram']"} | shared_parameters,
     ),
 ]
 

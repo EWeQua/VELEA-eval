@@ -63,6 +63,7 @@ excludes = [
     {"source": f"{excludes_path}/Gewerbe.shp"},
     {"source": f"{excludes_path}/Industrie.shp"},
     {"source": f"{excludes_path}/Bahnverkehr.shp"},
+    {"source": f"{excludes_path}/Versorgung.shp"},
 ]
 
 restricted = [
