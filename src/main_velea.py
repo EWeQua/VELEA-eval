@@ -13,13 +13,13 @@ def run():
         shared.includes,
         shared.excludes,
         shared.restricted,
-        sliver_threshold=100,
+        sliver_threshold=None,
         crs="EPSG:25832",
     ).execute()
 
 
 print(f"Running VELEA {number_of_repetitions} times")
-# Uncomment the next line if you are not interested in the runtime measurement
+# Comment the next line if you are not interested in the runtime measurement
 timer = timeit.Timer(run).repeat(number=1, repeat=number_of_repetitions)
 print(f"Runtimes of VELEA:")
 print(timer)
