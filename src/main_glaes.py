@@ -18,7 +18,6 @@ def run():
         ec.excludeVectorType(**include)
     for exclude in shared.excludes:
         ec.excludeVectorType(**exclude)
-    # ec.pruneIsolatedAreas(minSize=100)
     return ec
 
 
@@ -26,6 +25,7 @@ for pixel_resolution in shared.glaes_pixel_resolutions:
     print(
         f"Running GLAES {number_of_repetitions} times with a pixel resolution of {pixel_resolution}"
     )
+    # Uncomment the next line if you are not interested in the runtime measurement
     timer = timeit.Timer(run).repeat(number=1, repeat=number_of_repetitions)
     print(f"Runtimes of GLAES with pixel resolution of {pixel_resolution}:")
     print(timer)

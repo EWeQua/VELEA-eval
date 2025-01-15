@@ -8,6 +8,9 @@ restricted_path = f"{input_directory}/restricted"
 
 base_area = {"source": region_path}
 
+glaes_filename = "GLAES"
+glaes_pixel_resolutions = [1, 10, 100]
+
 includes = [
     {"source": f"{includes_path}/Benachteiligte Gebiete.shp", "mode": "include"},
     {
@@ -82,6 +85,3 @@ restricted = [
     {"source": f"{restricted_path}/Natura 2000 FFH.shp"},
     {"source": f"{restricted_path}/Natura 2000 Vogelschutzgebiete.shp"},
 ]
-
-glaes_filename = "GLAES"
-glaes_pixel_resolutions = [1, 10, 100]

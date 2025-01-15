@@ -6,12 +6,10 @@ import shared
 
 number_of_repetitions = 10
 
-base_area = {"source": shared.region_path}
-
 
 def run():
     return EligibilityAnalysis(
-        base_area,
+        shared.base_area,
         shared.includes,
         shared.excludes,
         shared.restricted,
@@ -21,6 +19,7 @@ def run():
 
 
 print(f"Running VELEA {number_of_repetitions} times")
+# Uncomment the next line if you are not interested in the runtime measurement
 timer = timeit.Timer(run).repeat(number=1, repeat=number_of_repetitions)
 print(f"Runtimes of VELEA:")
 print(timer)
