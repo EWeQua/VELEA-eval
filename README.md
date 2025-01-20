@@ -112,7 +112,5 @@ See also the [LUBW criteria table](https://www.energieatlas-bw.de/documents/2438
 (in German).
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
+This work was funded by the Bavarian State Ministry of Science and the Arts to promote applied research and development 
+at universities of applied sciences and technical universities.
