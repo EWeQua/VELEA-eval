@@ -4,6 +4,7 @@ from velea import EligibilityAnalysis
 
 import shared
 
+# If you are not interested in the runtime evaluation, set number_of_repetitions to 0
 number_of_repetitions = 10
 
 
@@ -18,12 +19,12 @@ def run():
     ).execute()
 
 
-print(f"Running VELEA {number_of_repetitions} times")
-# Comment the next line if you are not interested in the runtime measurement
-timer = timeit.Timer(run).repeat(number=1, repeat=number_of_repetitions)
-print(f"Runtimes of VELEA:")
-print(timer)
-print(f"Minimum runtime of VELEA: {min(timer):.2f}")
+if number_of_repetitions > 0:
+    print(f"Running VELEA {number_of_repetitions} times")
+    timer = timeit.Timer(run).repeat(number=1, repeat=number_of_repetitions)
+    print(f"Runtimes of VELEA:")
+    print(timer)
+    print(f"Minimum runtime of VELEA: {min(timer):.2f}")
 
 eligible_areas, restricted_areas = run()
 eligible_areas.to_file(f"{shared.output_directory}/VELEA-eligible.gpkg")

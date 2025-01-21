@@ -4,6 +4,7 @@ from glaes import ExclusionCalculator
 
 import shared
 
+# If you are not interested in the runtime evaluation, set number_of_repetitions to 0
 number_of_repetitions = 10
 
 
@@ -22,16 +23,17 @@ def run():
 
 
 for pixel_resolution in shared.glaes_pixel_resolutions:
-    print(
-        f"Running GLAES {number_of_repetitions} times with a pixel resolution of {pixel_resolution}"
-    )
-    # Comment the next line if you are not interested in the runtime measurement
-    timer = timeit.Timer(run).repeat(number=1, repeat=number_of_repetitions)
-    print(f"Runtimes of GLAES with pixel resolution of {pixel_resolution}:")
-    print(timer)
-    print(
-        f"Minimum runtime of GLAES with pixel resolution of {pixel_resolution}: {min(timer):.2f}"
-    )
+    if number_of_repetitions > 0:
+        print(
+            f"Running GLAES {number_of_repetitions} times with a pixel resolution of {pixel_resolution}"
+        )
+        # Comment the following lines if you are not interested in the runtime measurement
+        timer = timeit.Timer(run).repeat(number=1, repeat=number_of_repetitions)
+        print(f"Runtimes of GLAES with pixel resolution of {pixel_resolution}:")
+        print(timer)
+        print(
+            f"Minimum runtime of GLAES with pixel resolution of {pixel_resolution}: {min(timer):.2f}"
+        )
 
     exclusion_calculator = run()
     exclusion_calculator.save(
