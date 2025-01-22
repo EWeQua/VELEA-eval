@@ -3,19 +3,17 @@ import pandas as pd
 from geopandas import GeoDataFrame
 
 import shared
+from src.helpers import ensure_no_overlap, intersection_over_union
 
 output_directory = shared.output_directory
 conversion_factor = 10**6  # m^2 --> km^2
 
-
-def intersection_over_union(df1: GeoDataFrame, df2: GeoDataFrame) -> float:
-    intersection = df1.overlay(df2, how="intersection", keep_geom_type=True)
-    union = df1.overlay(df2, how="union", keep_geom_type=True)
-    return intersection.area.sum() / union.area.sum()
-
-
-velea_eligible_gdf = gpd.read_file(f"{output_directory}/VELEA-eligible.gpkg")
-velea_restricted_gdf = gpd.read_file(f"{output_directory}/VELEA-restricted.gpkg")
+velea_eligible_gdf = ensure_no_overlap(
+    gpd.read_file(f"{output_directory}/VELEA-eligible.gpkg")
+)
+velea_restricted_gdf = ensure_no_overlap(
+    gpd.read_file(f"{output_directory}/VELEA-restricted.gpkg")
+)
 
 
 lubw_disadvantaged_gdf = gpd.read_file(
@@ -39,10 +37,10 @@ lubw_eligible_gdf = GeoDataFrame(
     crs=lubw_combined_gdf.crs,
 )
 
-velea_combined_gdf = GeoDataFrame(
-    geometry=list(velea_eligible_gdf.union_all().geoms)
-    + list(velea_restricted_gdf.union_all().geoms),
-    crs=velea_eligible_gdf.crs,
+velea_combined_gdf = ensure_no_overlap(
+    gpd.GeoDataFrame(
+        pd.concat([velea_eligible_gdf, velea_restricted_gdf], ignore_index=True)
+    )
 )
 print(f"VELEA overall size: {sum(velea_combined_gdf.area)/ conversion_factor:.4f}")
 

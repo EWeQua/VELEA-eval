@@ -27,7 +27,6 @@ for pixel_resolution in shared.glaes_pixel_resolutions:
         print(
             f"Running GLAES {number_of_repetitions} times with a pixel resolution of {pixel_resolution}"
         )
-        # Comment the following lines if you are not interested in the runtime measurement
         timer = timeit.Timer(run).repeat(number=1, repeat=number_of_repetitions)
         print(f"Runtimes of GLAES with pixel resolution of {pixel_resolution}:")
         print(timer)

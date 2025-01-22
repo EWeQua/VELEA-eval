@@ -76,12 +76,12 @@ If you are not interested in the runtime evaluation, set `number_of_repetitions`
 
 ### Running the evaluation
 
-After running GLAES and VELEA, activate the eval-environment-velea environment and run `iou.py` to read the results from
+After running GLAES and VELEA, activate the eval-environment-velea environment and
+run [`eval_velea_glaes.py`](/src/eval_velea_glaes.py) to read the results from
 the previous steps and then calculate the resulting area sizes and the intersection over union.
 
-    cd src
     conda activate eval-environment-velea
-    python iou.py
+    python eval_velea_glaes.py
 
 ## Comparison between VELEA and LUBW cadastre
 
@@ -109,11 +109,12 @@ Activate the corresponding environment and run `main_velea.py`.
 
 ### Running the evaluation
 
-After running VELEA run `iou_lubw.py` to read the results from the previous step and then calculate the resulting area
+After running VELEA run [`eval_velea_lubw.py`](/src/eval_velea_lubw.py) to read the results from the previous step and then calculate the resulting
+area
 sizes and the intersection over union. The results will be printed to the console.
 
     conda activate eval-environment-velea
-    python iou_lubw.py
+    python eval_velea_lubw.py
 
 ## Used data sources
 
