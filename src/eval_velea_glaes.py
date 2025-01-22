@@ -1,5 +1,6 @@
 import geopandas as gpd
 import pandas as pd
+from geopandas import GeoDataFrame
 
 import shared
 from src.helpers import ensure_no_overlap, vectorize, intersection_over_union
@@ -17,7 +18,7 @@ velea_restricted_gdf = ensure_no_overlap(
 )
 # Ensure no overlap in the combined geometries of VELEA-eligible and VELEA-restricted
 velea_gdf = ensure_no_overlap(
-    gpd.GeoDataFrame(
+    GeoDataFrame(
         pd.concat([velea_eligible_gdf, velea_restricted_gdf], ignore_index=True)
     )
 )

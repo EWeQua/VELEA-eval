@@ -14,7 +14,11 @@ velea_eligible_gdf = ensure_no_overlap(
 velea_restricted_gdf = ensure_no_overlap(
     gpd.read_file(f"{output_directory}/VELEA-restricted.gpkg")
 )
-
+velea_combined_gdf = ensure_no_overlap(
+    GeoDataFrame(
+        pd.concat([velea_eligible_gdf, velea_restricted_gdf], ignore_index=True)
+    )
+)
 
 lubw_disadvantaged_gdf = gpd.read_file(
     f"{shared.input_directory}/LUBW/disadvantaged.shp"
@@ -37,11 +41,7 @@ lubw_eligible_gdf = GeoDataFrame(
     crs=lubw_combined_gdf.crs,
 )
 
-velea_combined_gdf = ensure_no_overlap(
-    gpd.GeoDataFrame(
-        pd.concat([velea_eligible_gdf, velea_restricted_gdf], ignore_index=True)
-    )
-)
+
 print(f"VELEA overall size: {sum(velea_combined_gdf.area)/ conversion_factor:.4f}")
 
 print(f"Calculating IoU overall")
