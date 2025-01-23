@@ -3,7 +3,7 @@ import pandas as pd
 from geopandas import GeoDataFrame
 
 import shared
-from src.helpers import ensure_no_overlap, vectorize, intersection_over_union
+from helpers import ensure_no_overlap, vectorize, intersection_over_union
 
 output_directory = shared.output_directory
 conversion_factor = 10**6  # m^2 --> km^2
