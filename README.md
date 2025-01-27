@@ -19,8 +19,7 @@ See the [Conda installation docs](https://conda.io/docs/user-guide/install/downl
 
 ### Acquire geodata
 
-TODO
-
+Download the required [geodata from Zenodo](https://zenodo.org/records/14747581) and unpack it into the input directory.
 Afterward your directory structure should look like this:
 
 ```
